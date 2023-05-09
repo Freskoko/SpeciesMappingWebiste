@@ -35,7 +35,7 @@ def addanimal():
 
     new_word = Animal(name=name,longitude=longitude,latitude=latitude)
     db.session.add(new_word)
-    db.session.commit()
+    db.session.commit() 
 
     return jsonify({"message": f"Animal {name} added successfully"}), 201
 

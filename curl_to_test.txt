@@ -1,0 +1,3 @@
+curl -X POST "http://localhost:5000/addanimal" -H "Content-Type: application/json" -d "{\"name\": \"dog\", \"longitude\": 62, \"latitude\": 12}"
+
+curl -X GET "http://localhost:5000/getmap_with_animal?name=dog"
