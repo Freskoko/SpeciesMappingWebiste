@@ -21,6 +21,7 @@ class Animal(db.Model):
     # location = db.Column(db.String, unique=True, nullable = False)
     longitude = db.Column(db.Float, nullable = True)
     latitude = db.Column(db.Float, nullable = True)
+
     
 with app.app_context():
     db.create_all()
@@ -55,10 +56,27 @@ def getanimal():
 
     return jsonify({"animal_names":animal_names})
 
-
 def random_string(length=10):
     characters = string.ascii_letters + string.digits
     return ''.join(secrets.choice(characters) for _ in range(length))
+
+@app.route("/update_animal_and_img",methods=["POST"])
+def update_animal_and_img():
+    data = request.get_json()
+    animal_name_user = data.get("name")
+    longitude = data.get("longitude")
+    latitude = data.get("latitude")
+
+    if not animal_name_user:
+        return jsonify({"animal_names":"Not found"}), 404
+
+    animal_from_db = Animal.query.filter_by(name=animal_name_user).all()
+
+    
+
+    
+
+
 
 @app.route("/getmap_with_animal",methods=["GET"])
 def getmap_with_animal():
